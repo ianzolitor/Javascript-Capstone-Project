@@ -6,6 +6,9 @@ var newButton = document.getElementsByClassName("new-button")[0];
 var sorry = document.getElementsByClassName("sorry")[0]
 var solveButton = document.getElementsByClassName("solve-button")[0]
 var solveAnswer = document.getElementById("guess-solve")
+var playersNumber = document.getElementById("players-number")
+var players = document.getElementsByClassName("players")[0]
+
 
 var wof = new Puzzle;
 var wordArray = [];
@@ -44,6 +47,7 @@ function makePuzzle () {
 	wordArray = [];
 	puzzleArea.innerHTML = "";
 	sorry.innerHTML = "";
+	playerSelect()
 	var randomWord = Math.floor((Math.random() * wof.wordBank.length) + 0);
 	word = wof.wordBank[randomWord];
 	for (var i = 0; i < word.length; i++) {
@@ -80,7 +84,23 @@ function solvePuzzle () {
 	solveAnswer.value = ""
 }
 
+function playerSelect() {
+	players.innerHTML = ""
+	if (playersNumber.value === "1"){
+		players.innerHTML += "<div class = 'player'>Player 1</div>"
+			}
+	if (playersNumber.value === "2"){
+		players.innerHTML += "<div class = 'player'>Player 1</div><div class = 'player'>Player 2</div>"
+	}
+	if (playersNumber.value === "3"){
+		players.innerHTML += "<div class = 'player'>Player 1</div><div class = 'player'>Player 2</div><div class = 'player'>Player 3</div>"
 
+	}
+	if (playersNumber.value === "4"){
+		players.innerHTML += "<div class = 'player'>Player 1</div><div class = 'player'>Player 2</div><div class = 'player'>Player 3</div><div class = 'player'>Player 4</div>"
+
+	}			
+}
 
 
 

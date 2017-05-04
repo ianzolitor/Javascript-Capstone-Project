@@ -47,4 +47,13 @@ h1 {
   margin-left: 50px;
   display: inline-block; }
 
+.players {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-around; }
+
+.specific-player {
+  display: inline-block;
+  font-size: 30px; }
+
 /*# sourceMappingURL=style.css.map */
