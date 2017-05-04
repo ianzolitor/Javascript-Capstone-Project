@@ -1,0 +1,1 @@
+var puzzleArea = document.getElementsByClassName("puzzle")
