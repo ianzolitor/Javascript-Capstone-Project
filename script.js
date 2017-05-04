@@ -32,6 +32,10 @@ solveButton.addEventListener("click", solvePuzzle);
 wof.loadWord("encyclopedia");
 wof.loadWord("rattlesnake");
 wof.loadWord("farmer");
+wof.loadWord("skyscraper");
+wof.loadWord("subway");
+wof.loadWord("institution");
+wof.loadWord("creature");
 wof.loadWord("goat");
 wof.loadWord("applesauce");
 wof.loadWord("computer");
@@ -67,8 +71,13 @@ function guessLetter () {
 
 function solvePuzzle () {
 	if (solveAnswer.value === word){
+		sorry.innerHTML = "Congratulations!"
 		alert("YOU WIN!")
 	}
+	else {
+		sorry.innerHTML = "YOU GUESSED WRONG!"
+	}
+	solveAnswer.value = ""
 }
 
 
