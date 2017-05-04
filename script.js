@@ -20,11 +20,7 @@ function guessLetter () {
 			}
 	}	
 }
-
-
-
 wordArray = []
-
 function makePuzzle (word) {
 	for (var i = 0; i < word.length; i++) {
     wordArray.push(word.charAt(i))
@@ -36,3 +32,13 @@ function makePuzzle (word) {
 
 }
 
+function Word(word) {
+this.word = word
+}
+
+
+function Puzzle() {
+this.wordBank = [];
+this.playSong = playSong;
+
+}
