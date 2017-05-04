@@ -1,4 +1,5 @@
 body {
+  font-family: helvetica;
   font-size: 24px;
   background-color: lightgrey; }
 
@@ -9,6 +10,7 @@ h1 {
   text-align: center; }
 
 .new-button {
+  background-color: white;
   display: inline-block;
   border: 2px solid black;
   margin-bottom: 20px; }
@@ -36,6 +38,7 @@ h1 {
   display: none; }
 
 .guess-button, .solve-button {
+  background-color: white;
   display: inline-block;
   border: 2px solid black; }
 
@@ -52,8 +55,20 @@ h1 {
   display: flex;
   justify-content: space-around; }
 
-.specific-player {
+.player {
   display: inline-block;
   font-size: 30px; }
+
+.player-number-button {
+  background-color: white;
+  font-size: 14px;
+  border: 2px solid black;
+  display: inline-block; }
+
+.players-button {
+  display: none;
+  font-size: 14px;
+  background-color: white;
+  border: 2px solid black; }
 
 /*# sourceMappingURL=style.css.map */
