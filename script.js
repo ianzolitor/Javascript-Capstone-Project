@@ -3,6 +3,9 @@ var guessButton = document.getElementsByClassName("guess-button")[0]
 var guessedLetter = document.getElementById("guessed-letter")
 var puzzleLetter = document.getElementsByClassName("puzzle-letter")
 
+
+
+
 guessButton.addEventListener("mouseover", function (){
 	event.target.style.cursor = "pointer"
 })
@@ -39,6 +42,6 @@ this.word = word
 
 function Puzzle() {
 this.wordBank = [];
-this.playSong = playSong;
+this.makePuzzle = MakePuzzle;
 
 }
