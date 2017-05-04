@@ -4,6 +4,8 @@ var guessedLetter = document.getElementById("guessed-letter");
 var puzzleLetter = document.getElementsByClassName("puzzle-letter");
 var newButton = document.getElementsByClassName("new-button")[0];
 var sorry = document.getElementsByClassName("sorry")[0]
+var solveButton = document.getElementsByClassName("solve-button")[0]
+var solveAnswer = document.getElementById("guess-solve")
 
 var wof = new Puzzle;
 var wordArray = [];
@@ -21,6 +23,12 @@ guessButton.addEventListener("mouseover", function (){
 
 guessButton.addEventListener("click",guessLetter);
 
+solveButton.addEventListener("mouseover", function (){
+	event.target.style.cursor = "pointer";
+})
+
+solveButton.addEventListener("click", solvePuzzle);
+
 wof.loadWord("encyclopedia");
 wof.loadWord("rattlesnake");
 wof.loadWord("farmer");
@@ -31,6 +39,7 @@ wof.loadWord("computer");
 function makePuzzle () {
 	wordArray = [];
 	puzzleArea.innerHTML = "";
+	sorry.innerHTML = "";
 	var randomWord = Math.floor((Math.random() * wof.wordBank.length) + 0);
 	word = wof.wordBank[randomWord];
 	for (var i = 0; i < word.length; i++) {
@@ -54,8 +63,15 @@ function guessLetter () {
 			sorry.innerHTML = "Sorry, there are no " + guessedLetter.value + "'s"
 			}
 				guessedLetter.value = ""
-
 }
+
+function solvePuzzle () {
+	if (solveAnswer.value === word){
+		alert("YOU WIN!")
+	}
+}
+
+
 
 
 

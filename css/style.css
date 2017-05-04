@@ -30,16 +30,21 @@ h1 {
   height: 50px;
   border: 2px solid black;
   text-align: center;
-  margin-top: 20px; }
+  margin-top: 80px; }
 
 .puzzle-letter {
   display: none; }
 
-.letter-guess-container {
-  display: inline-block; }
-
-.guess-button {
+.guess-button, .solve-button {
   display: inline-block;
   border: 2px solid black; }
+
+.solve-puzzle-container {
+  float: right; }
+
+.form-container {
+  margin-right: 50px;
+  margin-left: 50px;
+  display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */
