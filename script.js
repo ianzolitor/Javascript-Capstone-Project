@@ -10,25 +10,29 @@ var wordArray = [];
 
 
 newButton.addEventListener("mouseover", function (){
-	event.target.style.cursor = "pointer"
+	event.target.style.cursor = "pointer";
 })
 
-newButton.addEventListener("click", makePuzzle)
+newButton.addEventListener("click", makePuzzle);
 
 guessButton.addEventListener("mouseover", function (){
-	event.target.style.cursor = "pointer"
+	event.target.style.cursor = "pointer";
 })
 
-guessButton.addEventListener("click",guessLetter)
+guessButton.addEventListener("click",guessLetter);
 
-
-wof.loadWord("goat")
-wof.loadWord("applesauce")
-wof.loadWord("computer")
+wof.loadWord("encyclopedia");
+wof.loadWord("rattlesnake");
+wof.loadWord("farmer");
+wof.loadWord("goat");
+wof.loadWord("applesauce");
+wof.loadWord("computer");
 
 function makePuzzle () {
+	wordArray = [];
+	puzzleArea.innerHTML = "";
 	var randomWord = Math.floor((Math.random() * wof.wordBank.length) + 0);
-	word = wof.wordBank[randomWord]
+	word = wof.wordBank[randomWord];
 	for (var i = 0; i < word.length; i++) {
 	    wordArray.push(word.charAt(i))
 	    console.log(wordArray)
@@ -42,19 +46,17 @@ function makePuzzle () {
 function guessLetter () {
 	for (var i = 0; i < wordArray.length; i++) {
 		if (guessedLetter.value === wordArray[i]) {	
+			var guessedLetterTrue = true
 			puzzleLetter[i].style.display = "block"
-			sorry.innerHTML = ""
 			}
-		else {
-		sorry.innerHTML = "Sorry, there are no " + guessedLetter.value + "'s"
+		}	
+			if (guessedLetterTrue != true) {
+			sorry.innerHTML = "Sorry, there are no " + guessedLetter.value + "'s"
 			}
-	}	
-}
-
-function clearPuzzle () {
-	puzzleArea.innerHTML = ""
+				guessedLetter.value = ""
 
 }
+
 
 
 function Word(word) {
