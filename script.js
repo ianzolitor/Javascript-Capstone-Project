@@ -8,13 +8,10 @@ var solveButton = document.getElementsByClassName("solve-button")[0]
 var solveAnswer = document.getElementById("guess-solve")
 var playersNumber = document.getElementById("players-number")
 var players = document.getElementsByClassName("players")[0]
-// var playerTwoName = document.getElementById("player2")
-// var playerThreeName = document.getElementById("player3")
-// var playerFourName = document.getElementById("player4")
+
 var playerButton = document.getElementsByClassName("players-button")[0]
 var playerNumberButton = document.getElementsByClassName("player-number-button")[0]
 var formContainer = document.getElementsByClassName("form-container")
-// var nextButton = document.getElementsByClassName("next-player")[0]
 
 
 var playersNames = []
@@ -26,7 +23,6 @@ var inputNames = document.getElementsByClassName("player-name")
 		var player = new Player(inputNames[i].value)
 		playersNames.push(player)
 }
-	
 	players.innerHTML = ""
 	playerButton.style.display = "none"
 	makePuzzle()
@@ -41,11 +37,6 @@ var wof = new Puzzle;
 var wordArray = [];
 var currentPlayer = 0
 
-// nextButton.addEventListener("mouseover", function (){
-// 	event.target.style.cursor = "pointer";
-// })
-
-// nextButton.addEventListener("click", nextPlayer);
 
 
 playerNumberButton.addEventListener("mouseover", function (){
@@ -148,7 +139,7 @@ function solvePuzzle () {
 
 function Player (name) {
 	this.name = name
-	this.score = ""
+	this.score = 0
 }
 
 
