@@ -148,17 +148,19 @@ function solvePuzzle () {
 
 function Player (name) {
 	this.name = name
-	this.score = ""
+	this.score = 0
 }
 
 
 function playerSelect() {
-	howManyPlayers.style.visibility = "hidden"
+	// howManyPlayers.style.visibility = "hidden"
     var playerNum = parseInt(playersNumber.value);
     for (var i = 1; i <= playerNum; i++) {
         players.innerHTML += "<div class = 'player'>Player " + i + "- Enter Name <input type='input' class='player-name'></div>"
     }
     playerButton.style.display = "inline-block"
+
+    
 }
 
 function Word(word) {
