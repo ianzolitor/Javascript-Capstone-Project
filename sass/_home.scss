@@ -101,3 +101,13 @@ h1 {
 	background-color:$light-color;
 	text-align:center;
 }
+
+.guessed-letters-container{
+	display:flex;
+	justify-content:space-around;
+	margin-bottom:20px;	
+}
+
+.guessed-letters {
+	display:none;
+}

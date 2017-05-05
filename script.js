@@ -12,6 +12,8 @@ var categoryDisplay = document.getElementsByClassName("category-display")[0]
 var playerButton = document.getElementsByClassName("players-button")[0]
 var playerNumberButton = document.getElementsByClassName("player-number-button")[0]
 var formContainer = document.getElementsByClassName("form-container")
+var guessedLetterField = document.getElementsByClassName("guessed-letters-container")[0]
+var guessedLetters = document.getElementsByClassName("guessed-letters")[0]
 
 var playersNames = []
 var wordArray = [];
@@ -79,7 +81,7 @@ function submitNames(){
 		makePuzzle()
 		for (var i = 0; i < formContainer.length; i++) {
 			formContainer[i].style.display = "inline-block"
-			formContainer[i].style.border = "2px dotted red";
+			// formContainer[i].style.border = "2px dotted red";
 
 		}
 }
@@ -87,6 +89,7 @@ function submitNames(){
 function makePuzzle () {
 	wordArray = [];
 	puzzleArea.innerHTML = "";
+	guessedLetterField.innerHTML = "";
 	sorry.innerHTML = playersNames[currentPlayer].name + "'s Turn " + playersNames[currentPlayer].score +" Points";
 	var randomWord = Math.floor((Math.random() * wof.wordBank.length) + 0);
 	word = wof.wordBank[randomWord].word;
@@ -122,10 +125,12 @@ function guessLetter () {
 			var guessedLetterTrue = true
 			puzzleLetter[i].style.display = "block"	
 			playersNames[currentPlayer].score +=50
-			sorry.innerHTML = "Good Guess, " + playersNames[currentPlayer].name + "! It's Still Your Turn." + playersNames[currentPlayer].score +" Points";
+			sorry.innerHTML = "Good Guess, " + playersNames[currentPlayer].name + "! It's Still Your Turn. " + playersNames[currentPlayer].score +" Points";
 			}
 		}	
 			if (guessedLetterTrue != true) {
+			guessedLetters.style.display = "inline-block";
+			guessedLetterField.innerHTML += "<div>" + guessedLetter.value + "</div>";
 			sorry.innerHTML = "Sorry, there are no " + guessedLetter.value + "'s <div class = 'next-player'>Next Player</div>"
 			var nextButton = document.getElementsByClassName("next-player")[0]
 			nextButton.addEventListener("mouseover", function (){

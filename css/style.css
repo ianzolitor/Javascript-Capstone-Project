@@ -90,4 +90,12 @@ h1 {
   background-color: #d4acef;
   text-align: center; }
 
+.guessed-letters-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px; }
+
+.guessed-letters {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */
