@@ -2,17 +2,20 @@ var puzzleArea = document.getElementsByClassName("puzzle")[0];
 var guessButton = document.getElementsByClassName("guess-button")[0];
 var guessedLetter = document.getElementById("guessed-letter");
 var puzzleLetter = document.getElementsByClassName("puzzle-letter");
-var newButton = document.getElementsByClassName("new-button")[0];
+var howManyPlayers = document.getElementsByClassName("new-button-container")[0];
 var sorry = document.getElementsByClassName("sorry")[0]
 var solveButton = document.getElementsByClassName("solve-button")[0]
 var solveAnswer = document.getElementById("guess-solve")
 var playersNumber = document.getElementById("players-number")
 var players = document.getElementsByClassName("players")[0]
-var playerTwoName = document.getElementById("player2")
-var playerThreeName = document.getElementById("player3")
-var playerFourName = document.getElementById("player4")
+// var playerTwoName = document.getElementById("player2")
+// var playerThreeName = document.getElementById("player3")
+// var playerFourName = document.getElementById("player4")
 var playerButton = document.getElementsByClassName("players-button")[0]
 var playerNumberButton = document.getElementsByClassName("player-number-button")[0]
+var formContainer = document.getElementsByClassName("form-container")
+// var nextButton = document.getElementsByClassName("next-player")[0]
+
 
 var playersNames = []
 
@@ -23,11 +26,27 @@ var inputNames = document.getElementsByClassName("player-name")
 		var player = new Player(inputNames[i].value)
 		playersNames.push(player)
 }
+	
+	players.innerHTML = ""
+	playerButton.style.display = "none"
+	makePuzzle()
+	for (var i = 0; i < formContainer.length; i++) {
+		formContainer[i].style.display = "inline-block"
+	}
+
 
 }
 
 var wof = new Puzzle;
 var wordArray = [];
+var currentPlayer = 0
+
+// nextButton.addEventListener("mouseover", function (){
+// 	event.target.style.cursor = "pointer";
+// })
+
+// nextButton.addEventListener("click", nextPlayer);
+
 
 playerNumberButton.addEventListener("mouseover", function (){
 	event.target.style.cursor = "pointer";
@@ -41,11 +60,11 @@ playerButton.addEventListener("mouseover", function (){
 
 playerButton.addEventListener("click", submitNames);
 
-newButton.addEventListener("mouseover", function (){
-	event.target.style.cursor = "pointer";
-})
+// newButton.addEventListener("mouseover", function (){
+// 	event.target.style.cursor = "pointer";
+// })
 
-newButton.addEventListener("click", makePuzzle);
+// newButton.addEventListener("click", makePuzzle);
 
 guessButton.addEventListener("mouseover", function (){
 	event.target.style.cursor = "pointer";
@@ -73,7 +92,7 @@ wof.loadWord("computer");
 function makePuzzle () {
 	wordArray = [];
 	puzzleArea.innerHTML = "";
-	sorry.innerHTML = "";
+	sorry.innerHTML = playersNames[currentPlayer].name + "'s Turn " + playersNames[currentPlayer].score +" Points";
 	var randomWord = Math.floor((Math.random() * wof.wordBank.length) + 0);
 	word = wof.wordBank[randomWord];
 	for (var i = 0; i < word.length; i++) {
@@ -86,6 +105,15 @@ function makePuzzle () {
 
 }
 
+function nextPlayer() {
+	currentPlayer +=1
+	if (currentPlayer === playersNames.length) {
+		currentPlayer =0
+	}
+	sorry.innerHTML = playersNames[currentPlayer].name + "'s Turn " + playersNames[currentPlayer].score +" Points";
+}
+
+
 function guessLetter () {
 	for (var i = 0; i < wordArray.length; i++) {
 		if (guessedLetter.value === wordArray[i]) {	
@@ -94,7 +122,14 @@ function guessLetter () {
 			}
 		}	
 			if (guessedLetterTrue != true) {
-			sorry.innerHTML = "Sorry, there are no " + guessedLetter.value + "'s"
+			sorry.innerHTML = "Sorry, there are no " + guessedLetter.value + "'s <div class = 'next-player'>Next Player</div>"
+			var nextButton = document.getElementsByClassName("next-player")[0]
+			nextButton.addEventListener("mouseover", function (){
+			event.target.style.cursor = "pointer";
+				})
+
+			nextButton.addEventListener("click", nextPlayer);
+
 			}
 				guessedLetter.value = ""
 }
@@ -107,16 +142,18 @@ function solvePuzzle () {
 	else {
 		sorry.innerHTML = "YOU GUESSED WRONG!"
 	}
-	solveAnswer.value = ""
+	solveAnswer.value = ""		
 }
 
 
 function Player (name) {
 	this.name = name
+	this.score = ""
 }
 
 
 function playerSelect() {
+	howManyPlayers.style.visibility = "hidden"
     var playerNum = parseInt(playersNumber.value);
     for (var i = 1; i <= playerNum; i++) {
         players.innerHTML += "<div class = 'player'>Player " + i + "- Enter Name <input type='input' class='player-name'></div>"
