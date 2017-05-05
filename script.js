@@ -110,6 +110,12 @@ function guessLetter () {
 		if (guessedLetter.value === wordArray[i]) {	
 			var guessedLetterTrue = true
 			puzzleLetter[i].style.display = "block"
+
+			
+			playersNames[currentPlayer].score +=50
+			sorry.innerHTML = "Good Guess, " + playersNames[currentPlayer].name + "! It's Still Your Turn." + playersNames[currentPlayer].score +" Points";
+
+
 			}
 		}	
 			if (guessedLetterTrue != true) {
@@ -127,8 +133,21 @@ function guessLetter () {
 
 function solvePuzzle () {
 	if (solveAnswer.value === word){
-		sorry.innerHTML = "Congratulations!"
+		sorry.innerHTML = "Congratulations " + playersNames[currentPlayer].name + "!" + playersNames[currentPlayer].score +" Points" + "<div class = 'new-button'>Click For New Game </div>"
 		alert("YOU WIN!")
+		var newButton = document.getElementsByClassName("new-button")[0]
+		newButton.addEventListener("mouseover", function (){
+		event.target.style.cursor = "pointer";
+			})
+
+		newButton.addEventListener("click", makePuzzle);
+			
+
+			for (var i = 0; i < playersNames.length; i++) {
+				if (playersNames[i] != playersNames[currentPlayer]) {
+					playersNames[i].score = 0
+				}
+			}
 	}
 	else {
 		sorry.innerHTML = "YOU GUESSED WRONG!"
@@ -144,7 +163,7 @@ function Player (name) {
 
 
 function playerSelect() {
-	// howManyPlayers.style.visibility = "hidden"
+	howManyPlayers.style.visibility = "hidden"
     var playerNum = parseInt(playersNumber.value);
     for (var i = 1; i <= playerNum; i++) {
         players.innerHTML += "<div class = 'player'>Player " + i + "- Enter Name <input type='input' class='player-name'></div>"
