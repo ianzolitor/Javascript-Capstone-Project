@@ -4,7 +4,8 @@ body {
   background-color: #5882bc; }
 
 h1 {
-  text-align: center; }
+  text-align: center;
+  border: 2px dotted red; }
 
 .new-button-container {
   text-align: center; }
@@ -35,7 +36,14 @@ h1 {
   text-align: center;
   margin-top: 80px; }
 
+.blank-letter {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin-top: 80px; }
+
 .puzzle-letter {
+  font-size: 30px;
   display: none; }
 
 .guess-button, .solve-button {
@@ -47,6 +55,7 @@ h1 {
   float: right; }
 
 .form-container {
+  margin-top: 50px;
   margin-right: 50px;
   margin-left: 50px;
   display: none; }
@@ -78,6 +87,7 @@ h1 {
   margin: 0 auto; }
 
 .category-display {
+  background-color: #d4acef;
   text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

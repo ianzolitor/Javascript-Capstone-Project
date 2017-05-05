@@ -42,15 +42,18 @@ solveButton.addEventListener("mouseover", function (){
 
 solveButton.addEventListener("click", solvePuzzle);
 
-var encyclopedia = new Word("encyclopedia", "Academia")
-var rattlesnake = new Word("rattlesnake", "Animal")
-var farmer = new Word("farmer", "Person In The Dirt")
-var skyscraper = new Word("skyscraper", "City Life")
-var subway = new Word("subway", "City Life")
-var institution = new Word("institution", "An Established Organization")
-var applesauce = new Word("applesauce", "Good Without Teeth")
-var busker = new Word("busker", "City Life")
-var camouflage = new Word("camouflage", "Hard To See")
+var encyclopedia = new Word("encyclopedia", "Academia");
+var rattlesnake = new Word("rattlesnake", "Animal");
+var farmer = new Word("farmer", "Person In The Dirt");
+var skyscraper = new Word("skyscraper", "City Life");
+var subway = new Word("subway", "City Life");
+var institution = new Word("institution", "An Established Organization");
+var applesauce = new Word("applesauce", "Good Without Teeth");
+var busker = new Word("busker", "City Life");
+var camouflage = new Word("camouflage", "Hard To See");
+var codeBoot = new Word("coding bootcamp", "What We're In!");
+var sumVac = new Word("summer vacation", "Hot Time Off");
+var lvb = new Word("ludwig van beethoven", "Musician");
 
 wof.loadWord(encyclopedia);
 wof.loadWord(rattlesnake);
@@ -61,6 +64,9 @@ wof.loadWord(institution);
 wof.loadWord(busker);
 wof.loadWord(applesauce);
 wof.loadWord(camouflage);
+wof.loadWord(codeBoot);
+wof.loadWord(sumVac);
+wof.loadWord(lvb);
 
 function submitNames(){
 	var inputNames = document.getElementsByClassName("player-name")
@@ -73,6 +79,8 @@ function submitNames(){
 		makePuzzle()
 		for (var i = 0; i < formContainer.length; i++) {
 			formContainer[i].style.display = "inline-block"
+			formContainer[i].style.border = "2px dotted red";
+
 		}
 }
 
@@ -83,12 +91,19 @@ function makePuzzle () {
 	var randomWord = Math.floor((Math.random() * wof.wordBank.length) + 0);
 	word = wof.wordBank[randomWord].word;
 	categoryDisplay.innerHTML = "Hint: " + wof.wordBank[randomWord].hint
+	categoryDisplay.style.border = "2px dotted red";
+
 	for (var i = 0; i < word.length; i++) {
 	    wordArray.push(word.charAt(i))
 	    console.log(wordArray)
 		}
 		wordArray.forEach(function(letter){
+			if(letter === " ") {
+			puzzleArea.innerHTML +=  "<div class = 'blank-letter'><div class = 'puzzle-letter'>" + letter + "</div></div>"
+			}
+			else{
 			puzzleArea.innerHTML += "<div class = 'puzzle-letter-box'> <div class = 'puzzle-letter'>" + letter + "</div> </div>"
+		}
 		})
 
 }
