@@ -8,36 +8,15 @@ var solveButton = document.getElementsByClassName("solve-button")[0]
 var solveAnswer = document.getElementById("guess-solve")
 var playersNumber = document.getElementById("players-number")
 var players = document.getElementsByClassName("players")[0]
-
+var categoryDisplay = document.getElementsByClassName("category-display")[0]
 var playerButton = document.getElementsByClassName("players-button")[0]
 var playerNumberButton = document.getElementsByClassName("player-number-button")[0]
 var formContainer = document.getElementsByClassName("form-container")
 
-
 var playersNames = []
-
-function submitNames(){
-
-var inputNames = document.getElementsByClassName("player-name")
-	for (var i = 0; i < inputNames.length; i++) {
-		var player = new Player(inputNames[i].value)
-		playersNames.push(player)
-}
-	players.innerHTML = ""
-	playerButton.style.display = "none"
-	makePuzzle()
-	for (var i = 0; i < formContainer.length; i++) {
-		formContainer[i].style.display = "inline-block"
-	}
-
-
-}
-
-var wof = new Puzzle;
 var wordArray = [];
 var currentPlayer = 0
-
-
+var wof = new Puzzle;
 
 playerNumberButton.addEventListener("mouseover", function (){
 	event.target.style.cursor = "pointer";
@@ -51,12 +30,6 @@ playerButton.addEventListener("mouseover", function (){
 
 playerButton.addEventListener("click", submitNames);
 
-// newButton.addEventListener("mouseover", function (){
-// 	event.target.style.cursor = "pointer";
-// })
-
-// newButton.addEventListener("click", makePuzzle);
-
 guessButton.addEventListener("mouseover", function (){
 	event.target.style.cursor = "pointer";
 })
@@ -69,23 +42,47 @@ solveButton.addEventListener("mouseover", function (){
 
 solveButton.addEventListener("click", solvePuzzle);
 
-wof.loadWord("encyclopedia");
-wof.loadWord("rattlesnake");
-wof.loadWord("farmer");
-wof.loadWord("skyscraper");
-wof.loadWord("subway");
-wof.loadWord("institution");
-wof.loadWord("creature");
-wof.loadWord("goat");
-wof.loadWord("applesauce");
-wof.loadWord("computer");
+var encyclopedia = new Word("encyclopedia", "Academia")
+var rattlesnake = new Word("rattlesnake", "Animal")
+var farmer = new Word("farmer", "Person In The Dirt")
+var skyscraper = new Word("skyscraper", "City Life")
+var subway = new Word("subway", "City Life")
+var institution = new Word("institution", "An Established Organization")
+var applesauce = new Word("applesauce", "Good Without Teeth")
+var busker = new Word("busker", "City Life")
+var camouflage = new Word("camouflage", "Hard To See")
+
+wof.loadWord(encyclopedia);
+wof.loadWord(rattlesnake);
+wof.loadWord(farmer);
+wof.loadWord(skyscraper);
+wof.loadWord(subway);
+wof.loadWord(institution);
+wof.loadWord(busker);
+wof.loadWord(applesauce);
+wof.loadWord(camouflage);
+
+function submitNames(){
+	var inputNames = document.getElementsByClassName("player-name")
+		for (var i = 0; i < inputNames.length; i++) {
+			var player = new Player(inputNames[i].value)
+			playersNames.push(player)
+	}
+		players.innerHTML = ""
+		playerButton.style.display = "none"
+		makePuzzle()
+		for (var i = 0; i < formContainer.length; i++) {
+			formContainer[i].style.display = "inline-block"
+		}
+}
 
 function makePuzzle () {
 	wordArray = [];
 	puzzleArea.innerHTML = "";
 	sorry.innerHTML = playersNames[currentPlayer].name + "'s Turn " + playersNames[currentPlayer].score +" Points";
 	var randomWord = Math.floor((Math.random() * wof.wordBank.length) + 0);
-	word = wof.wordBank[randomWord];
+	word = wof.wordBank[randomWord].word;
+	categoryDisplay.innerHTML = "Hint: " + wof.wordBank[randomWord].hint
 	for (var i = 0; i < word.length; i++) {
 	    wordArray.push(word.charAt(i))
 	    console.log(wordArray)
@@ -104,18 +101,13 @@ function nextPlayer() {
 	sorry.innerHTML = playersNames[currentPlayer].name + "'s Turn " + playersNames[currentPlayer].score +" Points";
 }
 
-
 function guessLetter () {
 	for (var i = 0; i < wordArray.length; i++) {
 		if (guessedLetter.value === wordArray[i]) {	
 			var guessedLetterTrue = true
-			puzzleLetter[i].style.display = "block"
-
-			
+			puzzleLetter[i].style.display = "block"	
 			playersNames[currentPlayer].score +=50
 			sorry.innerHTML = "Good Guess, " + playersNames[currentPlayer].name + "! It's Still Your Turn." + playersNames[currentPlayer].score +" Points";
-
-
 			}
 		}	
 			if (guessedLetterTrue != true) {
@@ -155,13 +147,6 @@ function solvePuzzle () {
 	solveAnswer.value = ""		
 }
 
-
-function Player (name) {
-	this.name = name
-	this.score = 0
-}
-
-
 function playerSelect() {
 	howManyPlayers.style.visibility = "hidden"
     var playerNum = parseInt(playersNumber.value);
@@ -169,21 +154,22 @@ function playerSelect() {
         players.innerHTML += "<div class = 'player'>Player " + i + "- Enter Name <input type='input' class='player-name'></div>"
     }
     playerButton.style.display = "inline-block"
-
-    
 }
 
-function Word(word) {
-
+function Player (name) {
+	this.name = name
+	this.score = 0
 }
 
+function Word(word, hint) {
+	this.word = word
+	this.hint = hint
+}
 
 function Puzzle() {
 this.wordBank = [];
 this.loadWord = loadWord;
 this.makePuzzle = makePuzzle;
-
-
 
 	function loadWord (word) {
 	this.wordBank.push(word)

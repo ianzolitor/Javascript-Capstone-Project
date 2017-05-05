@@ -1,7 +1,7 @@
 body {
   font-family: helvetica;
   font-size: 24px;
-  background-color: lightgrey; }
+  background-color: #5882bc; }
 
 h1 {
   text-align: center; }
@@ -26,7 +26,7 @@ h1 {
   justify-content: space-around;
   width: 100%;
   height: 150px;
-  background-color: white; }
+  background-color: #d4acef; }
 
 .puzzle-letter-box {
   width: 50px;
@@ -76,5 +76,8 @@ h1 {
   border: 2px solid black;
   display: inline-block;
   margin: 0 auto; }
+
+.category-display {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */
