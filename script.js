@@ -14,6 +14,8 @@ var playerNumberButton = document.getElementsByClassName("player-number-button")
 var formContainer = document.getElementsByClassName("form-container")
 var guessedLetterField = document.getElementsByClassName("guessed-letters-container")[0]
 var guessedLetters = document.getElementsByClassName("guessed-letters")[0]
+var guessedLettersWrong = document.getElementsByClassName("guessed-letters-wrong")[0]
+
 
 var playersNames = []
 var wordArray = [];
@@ -56,6 +58,9 @@ var camouflage = new Word("camouflage", "Hard To See");
 var codeBoot = new Word("coding bootcamp", "What We're In!");
 var sumVac = new Word("summer vacation", "Hot Time Off");
 var lvb = new Word("ludwig van beethoven", "Musician");
+var oilCott = new Word("oiled cotton balls on curtain track", "What does Nadine like?")
+
+
 
 wof.loadWord(encyclopedia);
 wof.loadWord(rattlesnake);
@@ -69,6 +74,8 @@ wof.loadWord(camouflage);
 wof.loadWord(codeBoot);
 wof.loadWord(sumVac);
 wof.loadWord(lvb);
+wof.loadWord(oilCott);
+
 
 function submitNames(){
 	var inputNames = document.getElementsByClassName("player-name")
@@ -129,7 +136,7 @@ function guessLetter () {
 			}
 		}	
 			if (guessedLetterTrue != true) {
-			guessedLetters.style.display = "inline-block";
+			guessedLettersWrong.innerHTML = "You Guessed: ";
 			guessedLetterField.innerHTML += "<div>" + guessedLetter.value + "</div>";
 			sorry.innerHTML = "Sorry, there are no " + guessedLetter.value + "'s <div class = 'next-player'>Next Player</div>"
 			var nextButton = document.getElementsByClassName("next-player")[0]
